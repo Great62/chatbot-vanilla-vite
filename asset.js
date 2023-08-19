@@ -84,6 +84,8 @@ body.show-chatbot .chatbot {
 }
 header h2 {
   font-size: 1.4em;
+  font-weight: 600;
+  font-color: #fff;
 }
 .chatbot .chatbox {
   overflow-y: auto;
@@ -164,6 +166,7 @@ header h2 {
   border-top: 1px solid #ddd;
 }
 .chat-input textarea {
+  box-shadow: none;
   height: 55px;
   width: 100%;
   border: none;

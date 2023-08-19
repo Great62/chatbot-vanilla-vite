@@ -16,7 +16,7 @@ const createChatLi = (message, className, pictureHidden = false) => {
   // Create a chat <li> element with passed message and className
   const chatLi = document.createElement("li");
   chatLi.classList.add("chat", `${className}`);
-  let chatContent = className === "outgoing" ? `<p></p>` : `<span class="bot-picture-container ${pictureHidden ? 'hidden' : ''}"><img class='bot-picture' src='/icon-bot-96.png'/></span><p></p>`;
+  let chatContent = className === "outgoing" ? `<p></p>` : `<span class="bot-picture-container ${pictureHidden ? 'hidden' : ''}"><img class='bot-picture' src='https://cdn.jsdelivr.net/gh/Great62/chatbot-vanilla-vite@main/public/icon-bot-96.png'/></span><p></p>`;
   chatLi.innerHTML = chatContent;
   chatLi.querySelector("p").textContent = message;
   return chatLi; // return chat <li> element
