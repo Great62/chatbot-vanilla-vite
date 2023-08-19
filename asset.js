@@ -7,6 +7,7 @@ export const styles = `
   font-family: "Poppins", sans-serif;
 }
 .chatbot-toggler {
+  z-index: 9999;
   position: fixed;
   bottom: 30px;
   right: 35px;
@@ -45,6 +46,7 @@ body.show-chatbot .chatbot-toggler span:last-child {
   opacity: 1;
 }
 .chatbot {
+  z-index: 9999;
   position: fixed;
   right: 35px;
   bottom: 90px;
@@ -56,8 +58,7 @@ body.show-chatbot .chatbot-toggler span:last-child {
   pointer-events: none;
   transform: scale(0.5);
   transform-origin: bottom right;
-  box-shadow: 0 0 128px 0 rgba(0,0,0,0.1),
-              0 32px 64px -48px rgba(0,0,0,0.5);
+  box-shadow: 0 0 128px 0 rgba(0,0,0,0.1), 0 32px 64px -48px rgba(0,0,0,0.5);
   transition: all 0.1s ease;
 }
 body.show-chatbot .chatbot {
@@ -86,7 +87,7 @@ header h2 {
 }
 .chatbot .chatbox {
   overflow-y: auto;
-  height: 510px;
+  height: 470px;
   padding: 30px 20px 100px;
   display: flex;
   flex-direction: column;
