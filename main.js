@@ -64,7 +64,7 @@ initializeChatbot();
 
 document.addEventListener('DOMContentLoaded', function () {
   const script = document.createElement('script');
-  script.src = 'https://cdn.jsdelivr.net/gh/Great62/chatbot-vanilla-vite@main/chatbotLogic.js';
+  script.src = 'https://cdn.jsdelivr.net/gh/Great62/chatbot-vanilla-vite@latest/chatbotLogic.js';
   script.type = 'module';
   script.defer = true; // Optionally, set defer or async attribute
   document.body.appendChild(script);
