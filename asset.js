@@ -85,7 +85,7 @@ body.show-chatbot .chatbot {
 header h2 {
   font-size: 1.4em;
   font-weight: 600;
-  font-color: #fff;
+  color: #fff;
 }
 .chatbot .chatbox {
   overflow-y: auto;
@@ -215,6 +215,6 @@ header h2 {
 }
 
 .hidden {
-  visibility: hidden;
+  scale: 0;
 }
 `;

@@ -68,4 +68,15 @@ document.addEventListener('DOMContentLoaded', function () {
   script.type = 'module';
   script.defer = true; // Optionally, set defer or async attribute
   document.body.appendChild(script);
+
+  // icons
+  const link1 = document.createElement('link');
+  link1.rel = 'stylesheet';
+  link1.href = 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0';
+  document.head.appendChild(link1);
+
+  const link2 = document.createElement('link');
+  link2.rel = 'stylesheet';
+  link2.href = 'https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0';
+  document.head.appendChild(link2);
 });
