@@ -41,6 +41,7 @@ const init = () => {
     chatbox.appendChild(chatElement2);
     chatbox.scrollTo(0, chatbox.scrollHeight);
   }
+  console.log('MESSAGES FROM LOCAL STORAGE: ', messagesFromLocalStorage)
 }
 
 init();
