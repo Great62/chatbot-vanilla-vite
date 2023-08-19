@@ -82,7 +82,7 @@ body.show-chatbot .chatbot {
   transform: translateY(-50%);
 }
 header h2 {
-  font-size: 1.4rem;
+  font-size: 1.4em;
 }
 .chatbot .chatbox {
   overflow-y: auto;
@@ -129,7 +129,7 @@ header h2 {
   border-radius: 10px 10px 0 10px;
   max-width: 75%;
   color: #fff;
-  font-size: 0.95rem;
+  font-size: 0.95em;
   background: #0057ff;
 }
 .chatbox .incoming p {
@@ -170,7 +170,7 @@ header h2 {
   resize: none;
   max-height: 180px;
   padding: 15px 15px 15px 0;
-  font-size: 0.95rem;
+  font-size: 0.95em;
 }
 .chat-input span {
   align-self: flex-end;
@@ -180,7 +180,7 @@ header h2 {
   display: flex;
   align-items: center;
   visibility: hidden;
-  font-size: 1.35rem;
+  font-size: 1.35em;
 }
 .chat-input textarea:valid ~ span {
   visibility: visible;
