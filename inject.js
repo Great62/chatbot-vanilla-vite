@@ -66,9 +66,9 @@ class ChatBotWidget {
 
 const initializeChatbot = ({
   shopProvider,
-  appId
+  clientId
 }) => {
-  appId = appId;
+  clientId = clientId;
   shopProvider = shopProvider;
   new ChatBotWidget();
 }
