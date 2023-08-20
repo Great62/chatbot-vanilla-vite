@@ -1,8 +1,9 @@
-import { appId, shopProvider } from './inject.js';
+import { clientId, shopProvider, chatBotWebsiteHostName } from './inject.js';
 import * as getPageDetailsMethods from './getPageDetails.js';
 
-console.log('appId: ', appId);
+console.log('clientId: ', clientId);
 console.log('shopProvider: ', shopProvider);
+console.log('chatBotWebsiteHostName: ', chatBotWebsiteHostName);
 
 const chatbotToggler = document.querySelector(".chatbot-toggler");
 const closeBtn = document.querySelector(".close-btn");
@@ -12,6 +13,7 @@ const sendChatBtn = document.querySelector(".chat-input span");
 
 const { pageType, productName } = getPageDetailsMethods[shopProvider + 'PageDetails']();
 console.log('pageType: ', pageType);
+console.log('productName: ', productName);
 let isCouponGiven = false;
 const welcomeMessage = 'Hi there 👋! I\'m your friendly assistant here to help you. Whether you have questions, need assistance, or just want to chat, I\'m here for you. Feel free to type in your message'
 const welcomeQuestion = 'How can I help you?'
@@ -79,7 +81,7 @@ const generateResponse = async (chatElement) => {
         headers: {
           'Authorization': `Bearer ${''}`, // idToken
         },
-        body: JSON.stringify({ messages: messages, productName: productName, namespace: `app-${appId}` })
+        body: JSON.stringify({ messages: messages, productName: productName, pageType: pageType, isCouponGiven: isCouponGiven, clientId: clientId, chatBotWebsiteHostName: chatBotWebsiteHostName, shopProvider: shopProvider })
       }
     );
 
@@ -94,7 +96,7 @@ const generateResponse = async (chatElement) => {
       chatbox.appendChild(incomingChatLi);
       chatbox.scrollTo(0, chatbox.scrollHeight);
     } else {
-      messages = [...messages, {id: messages.length, speaker: 'salesman', text: data?.response?.text?.replace('[salesman]:', '').trim()}]      
+      messages = [...messages, {id: messages.length, speaker: 'salesman', text: data?.response?.text?.replace('[salesman]:', '').trim()}]
     }
 
     // update the isCouponGiven variable and set local storage
@@ -102,7 +104,6 @@ const generateResponse = async (chatElement) => {
       isCouponGiven = true;
       localStorage.setItem('isCouponGiven', JSON.stringify(isCouponGiven));
     }
-
 
     // update local storage
     localStorage.setItem('messages', JSON.stringify(messages));

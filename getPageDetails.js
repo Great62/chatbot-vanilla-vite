@@ -1,6 +1,8 @@
 const shopifyPageDetails = () => {
+  const pageType = window?.meta?.pageType;
+  const productName = pageType === 'product' ? window?.meta?.product?.variants?.[0]?.name : null;
   return {
-    pageType: window?.meta?.pageType,
-    productName: window?.meta?.product?.variants[0].name,
+    pageType: pageType,
+    productName: productName
   }
 }

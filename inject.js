@@ -1,7 +1,8 @@
 import { styles } from './asset.js';
 
-export let appId = '';
+export let clientId = '';
 export let shopProvider = '';
+export let chatBotWebsiteHostName = window.location.hostname;
 
 class ChatBotWidget {
   constructor() {
