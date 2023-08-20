@@ -1,16 +1,22 @@
+import { appId, shopProvider } from './inject.js';
+import * as getPageDetailsMethods from './getPageDetails.js';
+
+console.log('appId: ', appId);
+console.log('shopProvider: ', shopProvider);
+
 const chatbotToggler = document.querySelector(".chatbot-toggler");
 const closeBtn = document.querySelector(".close-btn");
 const chatbox = document.querySelector(".chatbox");
 const chatInput = document.querySelector(".chat-input textarea");
 const sendChatBtn = document.querySelector(".chat-input span");
 
+const { pageType, productName } = getPageDetailsMethods[shopProvider + 'PageDetails']();
+console.log('pageType: ', pageType);
 const welcomeMessage = 'Hi there 👋! I\'m your friendly assistant here to help you. Whether you have questions, need assistance, or just want to chat, I\'m here for you. Feel free to type in your message'
 const welcomeQuestion = 'How can I help you?'
 let userMessage = null; // Variable to store user's message
 let messages = [{ id: 0, speaker: 'salesman', text: welcomeMessage }, { id: 1, speaker: 'salesman', text: welcomeQuestion }];  // Variable to store all the messages including the starter message
 const inputInitHeight = chatInput.scrollHeight;
-const productName = 'jarvis standing desk';
-const appId = '5f9b3b5b-8b0a-4b0a-8b0a-4b0a8b0a4b0a';
 
 const createChatLi = (message, className, pictureHidden = false) => {
   // Create a chat <li> element with passed message and className

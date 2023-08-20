@@ -1,5 +1,8 @@
 import { styles } from './asset.js';
 
+export let appId = '';
+export let shopProvider = '';
+
 class ChatBotWidget {
   constructor() {
     this.initialize();
@@ -7,6 +10,10 @@ class ChatBotWidget {
   }
 
   async initialize() {
+    if (!this.appId) {
+      console.error('Please set the appId in the initializeChatbot function');
+      return;
+    }
     document.addEventListener('DOMContentLoaded', function () {
       const createHTMLElement = (tagName, attributes = {}, content = '') => {
         const element = document.createElement(tagName);
@@ -56,11 +63,18 @@ class ChatBotWidget {
   }
 }
 
-const initializeChatbot = () => {
+const initializeChatbot = ({
+  shopProvider,
+  appId
+}) => {
+  appId = appId;
+  shopProvider = shopProvider;
   new ChatBotWidget();
 }
 
-initializeChatbot();
+window.salesChatbot = {
+  initializeChatbot: initializeChatbot,
+};
 
 document.addEventListener('DOMContentLoaded', function () {
   const script = document.createElement('script');
