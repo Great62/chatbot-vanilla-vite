@@ -79,7 +79,7 @@ window.salesChatbot = {
 
 document.addEventListener('DOMContentLoaded', function () {
   const script = document.createElement('script');
-  script.src = 'https://cdn.jsdelivr.net/gh/Great62/chatbot-vanilla-vite@latest/chatbot.js';
+  script.src = 'https://raw.githack.com/Great62/chatbot-vanilla-vite/main/chatbot.js';
   script.type = 'module';
   script.defer = true; // Optionally, set defer or async attribute
   document.body.appendChild(script);
