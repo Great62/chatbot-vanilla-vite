@@ -12,6 +12,7 @@ const sendChatBtn = document.querySelector(".chat-input span");
 
 const { pageType, productName } = getPageDetailsMethods[shopProvider + 'PageDetails']();
 console.log('pageType: ', pageType);
+let isCouponGiven = false;
 const welcomeMessage = 'Hi there 👋! I\'m your friendly assistant here to help you. Whether you have questions, need assistance, or just want to chat, I\'m here for you. Feel free to type in your message'
 const welcomeQuestion = 'How can I help you?'
 let userMessage = null; // Variable to store user's message
@@ -48,6 +49,12 @@ const init = () => {
     chatbox.scrollTo(0, chatbox.scrollHeight);
   }
   console.log('MESSAGES FROM LOCAL STORAGE: ', messagesFromLocalStorage)
+
+  // get isCouponGiven from local storage
+  const isCouponGivenFromLocalStorage = JSON.parse(localStorage.getItem('isCouponGiven'));
+  if (isCouponGivenFromLocalStorage) {
+    isCouponGiven = isCouponGivenFromLocalStorage;
+  }
 }
 
 init();
@@ -78,8 +85,8 @@ const generateResponse = async (chatElement) => {
 
     const data = await response.json();
     console.log(data);
-    if (data?.response?.replace('[salesman]:', '')?.includes('|||')) {
-      const split = data?.response?.replace('[salesman]:', '')?.split('|||')
+    if (data?.response?.text?.replace('[salesman]:', '')?.includes('|||')) {
+      const split = data?.response?.text?.replace('[salesman]:', '')?.split('|||')
       messages = [...messages, {id: messages.length, speaker: 'salesman', text: split[0].trim()}, {id: messages.length + 1, speaker: 'salesman', text: split[1].trim().replace('Question: ', '')}]
       chatElement.querySelector('span').classList.add("hidden");
       messageElement.textContent = messages[messages.length - 2].text;
@@ -87,8 +94,15 @@ const generateResponse = async (chatElement) => {
       chatbox.appendChild(incomingChatLi);
       chatbox.scrollTo(0, chatbox.scrollHeight);
     } else {
-      messages = [...messages, {id: messages.length, speaker: 'salesman', text: data?.response?.replace('[salesman]:', '').trim()}]      
+      messages = [...messages, {id: messages.length, speaker: 'salesman', text: data?.response?.text?.replace('[salesman]:', '').trim()}]      
     }
+
+    // update the isCouponGiven variable and set local storage
+    if (data?.response?.isCouponGiven) {
+      isCouponGiven = true;
+      localStorage.setItem('isCouponGiven', JSON.stringify(isCouponGiven));
+    }
+
 
     // update local storage
     localStorage.setItem('messages', JSON.stringify(messages));
