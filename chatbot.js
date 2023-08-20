@@ -88,6 +88,7 @@ const generateResponse = async (chatElement) => {
     const data = await response.json();
     console.log(data);
     if (data?.response?.text?.replace('[salesman]:', '')?.includes('|||')) {
+      console.log('splitting message...')
       const split = data?.response?.text?.replace('[salesman]:', '')?.split('|||')
       messages = [...messages, {id: messages.length, speaker: 'salesman', text: split[0].trim()}, {id: messages.length + 1, speaker: 'salesman', text: split[1].trim().replace('Question: ', '')}]
       chatElement.querySelector('span').classList.add("hidden");
@@ -96,7 +97,10 @@ const generateResponse = async (chatElement) => {
       chatbox.appendChild(incomingChatLi);
       chatbox.scrollTo(0, chatbox.scrollHeight);
     } else {
+      console.log('no need to split message')
       messages = [...messages, {id: messages.length, speaker: 'salesman', text: data?.response?.text?.replace('[salesman]:', '').trim()}]
+      chatElement.querySelector('span').classList.add("hidden");
+      messageElement.textContent = messages[messages.length - 1].text;
     }
 
     // update the isCouponGiven variable and set local storage
