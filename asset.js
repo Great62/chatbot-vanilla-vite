@@ -91,7 +91,7 @@ body.show-chatbot .chatbot {
   width: 30px;
   height: 30px;
   top: 50%;
-  display: none;
+  display: block;
   cursor: pointer;
   transform: translateY(-50%);
 }
@@ -223,7 +223,7 @@ header h2 {
   .chatbot .chat-input {
     padding: 5px 15px;
   }
-  .chatbot header span {
+  .chatbot header .close-btn {
     display: block;
   }
 }
