@@ -78,6 +78,8 @@ body.show-chatbot .chatbot {
 .chatbot header span {
   position: absolute;
   right: 15px;
+  width: 30px;
+  height: 30px;
   top: 50%;
   display: none;
   cursor: pointer;
@@ -182,6 +184,7 @@ header h2 {
   color: #0057ff;
   cursor: pointer;
   height: 55px;
+  width: 35px;
   display: flex;
   align-items: center;
   visibility: hidden;
