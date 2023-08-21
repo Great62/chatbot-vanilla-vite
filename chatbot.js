@@ -7,6 +7,7 @@ console.log('chatBotWebsiteHostName: ', chatBotWebsiteHostName);
 
 const chatbotToggler = document.querySelector(".chatbot-toggler");
 const closeBtn = document.querySelector(".close-btn");
+const deleteBtn = document.querySelector(".delete-btn");
 const chatbox = document.querySelector(".chatbox");
 const chatInput = document.querySelector(".chat-input textarea");
 const sendChatBtn = document.querySelector(".chat-input span");
@@ -60,6 +61,12 @@ const init = () => {
 }
 
 init();
+
+const deleteMessages = () => {
+  messages = [];
+  localStorage.setItem('messages', JSON.stringify(messages));
+  init();
+}
 
 const generateResponse = async (chatElement) => {
   if (userMessage.trim() === '') return;
@@ -156,4 +163,5 @@ chatInput.addEventListener("keydown", (e) => {
 
 sendChatBtn.addEventListener("click", handleChat);
 closeBtn.addEventListener("click", () => document.body.classList.remove("show-chatbot"));
+deleteBtn.addEventListener("click", deleteMessages);
 chatbotToggler.addEventListener("click", () => document.body.classList.toggle("show-chatbot"));

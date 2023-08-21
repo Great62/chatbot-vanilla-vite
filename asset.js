@@ -75,9 +75,19 @@ body.show-chatbot .chatbot {
   background: #0057ff;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
-.chatbot header span {
+.chatbot header .close-btn {
   position: absolute;
   right: 15px;
+  width: 30px;
+  height: 30px;
+  top: 50%;
+  display: none;
+  cursor: pointer;
+  transform: translateY(-50%);
+}
+.chatbot header .delete-btn {
+  position: absolute;
+  left: 15px;
   width: 30px;
   height: 30px;
   top: 50%;
