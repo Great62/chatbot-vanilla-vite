@@ -11,10 +11,6 @@ class ChatBotWidget {
   }
 
   async initialize() {
-    if (!clientId) {
-      console.error('Please set the clienId in the initializeChatbot function');
-      return;
-    }
     document.addEventListener('DOMContentLoaded', function () {
       const createHTMLElement = (tagName, attributes = {}, content = '') => {
         const element = document.createElement(tagName);
@@ -89,6 +85,14 @@ const initializeChatbot = ({
 }) => {
   clientId = clientIdWeb;
   shopProvider = shopProviderWeb;
+  if (!clientId) {
+    console.error('Please set the clienId in the initializeChatbot function');
+    return;
+  }
+  if (!shopProvider) {
+    console.error('Please set the shopProvider in the initializeChatbot function');
+    return;
+  }
   new ChatBotWidget();
 }
 
