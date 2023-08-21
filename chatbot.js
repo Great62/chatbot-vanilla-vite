@@ -57,6 +57,7 @@ const init = () => {
   if (isCouponGivenFromLocalStorage) {
     isCouponGiven = isCouponGivenFromLocalStorage;
   }
+  console.log('isCouponGivenFromLocalStorage: ', isCouponGivenFromLocalStorage)
 }
 
 init();
@@ -99,7 +100,6 @@ const generateResponse = async (chatElement) => {
     } else {
       console.log('no need to split message')
       messages = [...messages, {id: messages.length, speaker: 'salesman', text: data?.response?.text?.replace('[salesman]:', '').trim()}]
-      chatElement.querySelector('span').classList.add("hidden");
       messageElement.textContent = messages[messages.length - 1].text;
     }
 
