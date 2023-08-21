@@ -1,7 +1,7 @@
 export const styles = `
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 .chatbot-toggler,
-.chatbot {
+.chatbot * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
