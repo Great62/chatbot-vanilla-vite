@@ -51,24 +51,23 @@ class ChatBotWidget {
       document.body.appendChild(chatbotToggler);
       document.body.appendChild(chatbot);
 
-      document.addEventListener('DOMContentLoaded', function () {
-        const script = document.createElement('script');
-        script.src = 'https://raw.githack.com/Great62/chatbot-vanilla-vite/main/chatbot.js';
-        script.type = 'module';
-        script.defer = true; // Optionally, set defer or async attribute
-        document.body.appendChild(script);
-      
-        // icons
-        const link1 = document.createElement('link');
-        link1.rel = 'stylesheet';
-        link1.href = 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0';
-        document.head.appendChild(link1);
-      
-        const link2 = document.createElement('link');
-        link2.rel = 'stylesheet';
-        link2.href = 'https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0';
-        document.head.appendChild(link2);
-      });
+      // appending script tag to body to load chatbot.js
+      const script = document.createElement('script');
+      script.src = 'https://raw.githack.com/Great62/chatbot-vanilla-vite/main/chatbot.js';
+      script.type = 'module';
+      script.defer = true; // Optionally, set defer or async attribute
+      document.body.appendChild(script);
+    
+      // icons
+      const link1 = document.createElement('link');
+      link1.rel = 'stylesheet';
+      link1.href = 'https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0';
+      document.head.appendChild(link1);
+    
+      const link2 = document.createElement('link');
+      link2.rel = 'stylesheet';
+      link2.href = 'https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@48,400,1,0';
+      document.head.appendChild(link2);
     });
   }
 
