@@ -57,7 +57,6 @@ const init = () => {
   if (isCouponGivenFromLocalStorage) {
     isCouponGiven = isCouponGivenFromLocalStorage;
   }
-  console.log('isCouponGivenFromLocalStorage: ', isCouponGivenFromLocalStorage)
 }
 
 init();

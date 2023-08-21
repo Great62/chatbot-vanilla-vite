@@ -36,14 +36,22 @@ class ChatBotWidget {
     const chatbot = createHTMLElement('div', { class: 'chatbot' }, `
       <header>
         <h2>Assistance</h2>
-        <span class="close-btn material-symbols-outlined">close</span>
+        <span>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-10 h-10">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </span>
       </header>
       <ul class="chatbox">
         
       </ul>
       <div class="chat-input">
         <textarea placeholder="Enter a message..." spellcheck="false" required></textarea>
-        <span id="send-btn" class="material-symbols-rounded">send</span>
+        <span id="send-btn" class="icon-container">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+            <path d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z" />
+          </svg>
+        </span>
       </div>
     `);
   
@@ -92,9 +100,6 @@ const initializeChatbot = ({
   }
   new ChatBotWidget();
 }
-
-// interval to check if window.salesChatbot.initializeChatbot exists
-
 
 window.salesChatbot = {
   initializeChatbot: initializeChatbot,
