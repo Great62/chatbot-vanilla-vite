@@ -11,8 +11,8 @@ class ChatBotWidget {
   }
 
   async initialize() {
-    if (!this.appId) {
-      console.error('Please set the appId in the initializeChatbot function');
+    if (!clientId) {
+      console.error('Please set the clienId in the initializeChatbot function');
       return;
     }
     document.addEventListener('DOMContentLoaded', function () {
