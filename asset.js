@@ -148,7 +148,7 @@ header h2 {
   background: #f2f2f2;
 }
 .bot-picture-container {
-  display: flex;
+  display: flex !important;
   align-items: center;
   justify-content: center;
 }

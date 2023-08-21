@@ -15,7 +15,7 @@ const { pageType, productName } = getPageDetailsMethods?.[shopProvider + 'PageDe
 console.log('pageType: ', pageType);
 console.log('productName: ', productName);
 let isCouponGiven = false;
-const welcomeMessage = 'Hi there 👋! I\'m your friendly assistant here to help you. Whether you have questions, need assistance, or just want to chat, I\'m here for you. Feel free to type in your message'
+const welcomeMessage = 'Hi there 👋! I\'m your friendly assistant here to help you. Whether you have questions, need assistance, or just want to chat, I\'m here for you. Feel free to type in your message.'
 const welcomeQuestion = 'How can I help you?'
 let userMessage = null; // Variable to store user's message
 let messages = [{ id: 0, speaker: 'salesman', text: welcomeMessage }, { id: 1, speaker: 'salesman', text: welcomeQuestion }];  // Variable to store all the messages including the starter message
