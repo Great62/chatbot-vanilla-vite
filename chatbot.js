@@ -11,7 +11,7 @@ const chatbox = document.querySelector(".chatbox");
 const chatInput = document.querySelector(".chat-input textarea");
 const sendChatBtn = document.querySelector(".chat-input span");
 
-const { pageType, productName } = getPageDetailsMethods[shopProvider + 'PageDetails']();
+const { pageType, productName } = getPageDetailsMethods?.['shopifyPageDetails']();
 console.log('pageType: ', pageType);
 console.log('productName: ', productName);
 let isCouponGiven = false;
