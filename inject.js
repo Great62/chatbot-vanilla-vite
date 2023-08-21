@@ -36,7 +36,7 @@ class ChatBotWidget {
     const chatbot = createHTMLElement('div', { class: 'chatbot' }, `
       <header>
         <h2>Assistance</h2>
-        <span>
+        <span class="close-btn">
           <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-10 h-10">
             <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
