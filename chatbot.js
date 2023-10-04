@@ -91,7 +91,7 @@ const generateResponse = async (chatElement) => {
         headers: {
           'Authorization': `Bearer ${''}`, // idToken
         },
-        body: JSON.stringify({ messages: messages, productName: productName, pageType: pageType, isCouponGiven: isCouponGiven, clientId: clientId, chatBotWebsiteHostName: chatBotWebsiteHostName, shopProvider: shopProvider })
+        body: JSON.stringify({ messages: messages, productName: 'AEBoard AE2', pageType: pageType, isCouponGiven: isCouponGiven, clientId: clientId, chatBotWebsiteHostName: chatBotWebsiteHostName, shopProvider: shopProvider })
       }
     );
 
