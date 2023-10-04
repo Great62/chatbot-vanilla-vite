@@ -65,6 +65,7 @@ init();
 const deleteMessages = () => {
   messages = [];
   localStorage.setItem('messages', JSON.stringify(messages));
+  chatbox.innerHTML = '';
   init();
 }
 
@@ -80,9 +81,11 @@ const generateResponse = async (chatElement) => {
     // // User is logged in, get the Firebase ID token
     // const idToken = await auth.currentUser?.getIdToken();
 
+    const fetchUrl = clientId === 'demo' ? `https://us-central1-sales-chatbot-f1521.cloudfunctions.net/openAISalesConversationDemo` : `https://us-central1-sales-chatbot-f1521.cloudfunctions.net/openAISalesConversation`;
+
     // call cloud function
     const response = await fetch(
-      `https://us-central1-sales-chatbot-f1521.cloudfunctions.net/openAISalesConversation`,
+      `${fetchUrl}`,
       {
         method: 'POST',
         headers: {
