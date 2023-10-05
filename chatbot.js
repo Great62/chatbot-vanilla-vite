@@ -81,17 +81,15 @@ const generateResponse = async (chatElement) => {
     // // User is logged in, get the Firebase ID token
     // const idToken = await auth.currentUser?.getIdToken();
 
-    const fetchUrl = clientId === 'demo' ? `https://us-central1-sales-chatbot-f1521.cloudfunctions.net/openAISalesConversationDemo` : `https://us-central1-sales-chatbot-f1521.cloudfunctions.net/openAISalesConversation`;
-
     // call cloud function
     const response = await fetch(
-      `${fetchUrl}`,
+      `https://us-central1-sales-chatbot-f1521.cloudfunctions.net/openAISalesConversation`,
       {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${''}`, // idToken
         },
-        body: JSON.stringify({ messages: messages, productName: 'AEBoard AE2', pageType: pageType, isCouponGiven: isCouponGiven, clientId: clientId, chatBotWebsiteHostName: chatBotWebsiteHostName, shopProvider: shopProvider })
+        body: JSON.stringify({ messages: messages, productName: 'Fiido Q1S - Seated Electric Scooter', pageType: pageType, isCouponGiven: isCouponGiven, clientId: clientId, chatBotWebsiteHostName: chatBotWebsiteHostName, shopProvider: shopProvider })
       }
     );
 
