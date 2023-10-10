@@ -89,7 +89,7 @@ const generateResponse = async (chatElement) => {
         headers: {
           'Authorization': `Bearer ${''}`, // idToken
         },
-        body: JSON.stringify({ messages: messages, productName: 'Fiido Q1S - Seated Electric Scooter', pageType: pageType, isCouponGiven: isCouponGiven, clientId: clientId, chatBotWebsiteHostName: chatBotWebsiteHostName, shopProvider: shopProvider })
+        body: JSON.stringify({ messages: messages, productName: 'Ecomobl ET Electric Skateboard', pageType: pageType, isCouponGiven: isCouponGiven, clientId: clientId, chatBotWebsiteHostName: chatBotWebsiteHostName, shopProvider: shopProvider })
       }
     );
 
