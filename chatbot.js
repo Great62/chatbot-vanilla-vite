@@ -50,6 +50,12 @@ const init = () => {
     const chatElement2 = createChatLi(welcomeQuestion, "incoming");
     chatbox.appendChild(chatElement2);
     chatbox.scrollTo(0, chatbox.scrollHeight);
+
+    // update messages variable
+    messages = [{ id: 0, speaker: 'salesman', text: welcomeMessage }, { id: 1, speaker: 'salesman', text: welcomeQuestion }];
+
+    // update local storage
+    localStorage.setItem('messages', JSON.stringify(messages));
   }
   console.log('MESSAGES FROM LOCAL STORAGE: ', messagesFromLocalStorage)
 
