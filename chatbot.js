@@ -1,6 +1,6 @@
 import { clientId, shopProvider, chatBotWebsiteHostName } from './inject.js';
 import * as getPageDetailsMethods from './getPageDetails.js';
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from 'https://cdn.jsdelivr.net/npm/uuid@9.0.1/dist/index.min.js';
 
 console.log('clientId: ', clientId);
 console.log('shopProvider: ', shopProvider);
