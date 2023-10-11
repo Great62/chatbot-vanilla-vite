@@ -65,8 +65,8 @@ class ChatBotWidget {
 
     // appending script tag to body to load uuid library
     const uuidScript = document.createElement('script');
-    script.src = 'https://cdn.jsdelivr.net/npm/uuid@9.0.1/dist/index.min.js';
-    script.type = 'text/javascript';
+    uuidScript.src = 'https://cdn.jsdelivr.net/npm/uuid@9.0.1/dist/index.min.js';
+    uuidScript.type = 'text/javascript';
     document.body.appendChild(uuidScript);
 
     // appending script tag to body to load chatbot.js
