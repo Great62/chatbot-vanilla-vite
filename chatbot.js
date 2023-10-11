@@ -1,5 +1,6 @@
 import { clientId, shopProvider, chatBotWebsiteHostName } from './inject.js';
 import * as getPageDetailsMethods from './getPageDetails.js';
+import { v4 as uuidv4 } from 'uuid';
 
 console.log('clientId: ', clientId);
 console.log('shopProvider: ', shopProvider);
@@ -21,6 +22,8 @@ const welcomeQuestion = 'How can I help you?'
 let userMessage = null; // Variable to store user's message
 let messages = [{ id: 0, speaker: 'salesman', text: welcomeMessage }, { id: 1, speaker: 'salesman', text: welcomeQuestion }];  // Variable to store all the messages including the starter message
 const inputInitHeight = chatInput.scrollHeight;
+let userId = null
+let conversationId = 0;
 
 const createChatLi = (message, className, pictureHidden = false) => {
   // Create a chat <li> element with passed message and className
@@ -64,6 +67,15 @@ const init = () => {
   if (isCouponGivenFromLocalStorage) {
     isCouponGiven = isCouponGivenFromLocalStorage;
   }
+
+  // get userId from local storage
+  const userIdFromLocalStorage = JSON.parse(localStorage.getItem('kp-userId'));
+  if (userIdFromLocalStorage) {
+    userId = userIdFromLocalStorage;
+  } else {
+    userId = uuidv4();
+    localStorage.setItem('kp-userId', JSON.stringify(userId));
+  }
 }
 
 init();
@@ -95,7 +107,7 @@ const generateResponse = async (chatElement) => {
         headers: {
           'Authorization': `Bearer ${''}`, // idToken
         },
-        body: JSON.stringify({ messages: messages, productName: 'Ecomobl ET Electric Skateboard', pageType: pageType, isCouponGiven: isCouponGiven, clientId: clientId, chatBotWebsiteHostName: chatBotWebsiteHostName, shopProvider: shopProvider })
+        body: JSON.stringify({ messages: messages, productName: 'Ecomobl ET Electric Skateboard', pageType: pageType, isCouponGiven: isCouponGiven, clientId: clientId, chatBotWebsiteHostName: chatBotWebsiteHostName, shopProvider: shopProvider, userId: userId, conversationId: conversationId })
       }
     );
 

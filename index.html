@@ -9,5 +9,27 @@
   <body>
     <div id="app"></div>
     <script type="module" src="/inject.js"></script>
+    <script defer>
+      console.log(window)
+      // const sleep = (milliseconds) => {
+      //   return new Promise(resolve => setTimeout(resolve, milliseconds));
+      // }
+      const triggerSalesBot = async () => {
+        // await sleep(1000)
+        window.salesChatbot.initializeChatbot({
+          shopProviderWeb: 'shopify',
+          clientIdWeb: '10'
+        })
+      }
+      const interval = setInterval(() => {
+        if (window.salesChatbot && window.salesChatbot.initializeChatbot) {
+          clearInterval(interval);
+          window.salesChatbot.initializeChatbot({
+            shopProviderWeb: 'shopify',
+            clientIdWeb: '10',
+          });
+        }
+      }, 500);
+    </script>
   </body>
 </html>
