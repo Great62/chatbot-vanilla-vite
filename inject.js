@@ -63,12 +63,6 @@ class ChatBotWidget {
     document.body.appendChild(chatbotToggler);
     document.body.appendChild(chatbot);
 
-    // appending script tag to body to load uuid library
-    const uuidScript = document.createElement('script');
-    uuidScript.src = 'https://cdn.jsdelivr.net/npm/uuid@9.0.1/dist/index.min.js';
-    uuidScript.type = 'text/javascript';
-    document.body.appendChild(uuidScript);
-
     // appending script tag to body to load chatbot.js
     const script = document.createElement('script');
     script.src = 'https://raw.githack.com/Great62/chatbot-vanilla-vite/main/chatbot.js';

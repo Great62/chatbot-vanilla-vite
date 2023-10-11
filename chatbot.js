@@ -1,6 +1,6 @@
 import { clientId, shopProvider, chatBotWebsiteHostName } from './inject.js';
 import * as getPageDetailsMethods from './getPageDetails.js';
-import { v4 as uuidv4 } from 'uuid';
+import { generateUserId } from './generateId.js';
 
 console.log('clientId: ', clientId);
 console.log('shopProvider: ', shopProvider);
@@ -73,7 +73,7 @@ const init = () => {
   if (userIdFromLocalStorage) {
     userId = userIdFromLocalStorage;
   } else {
-    userId = uuidv4();
+    userId = generateUserId(20)
     localStorage.setItem('kp-userId', JSON.stringify(userId));
   }
 }
