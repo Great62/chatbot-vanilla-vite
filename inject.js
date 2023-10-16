@@ -1,8 +1,9 @@
 import { styles } from './asset.js';
 
 export let clientId = '';
-export let shopProvider = '';
+export let shopProvider = 'shopify';
 export let chatBotWebsiteHostName = window.location.hostname;
+export let faq = [];
 
 class ChatBotWidget {
   constructor() {
@@ -19,6 +20,12 @@ class ChatBotWidget {
       element.innerHTML = content;
       return element;
     };
+
+    document.body.classList.add('show-home');
+    // if local storage value kp-chat-open is set to true, open the chatbot
+    if (localStorage.getItem('kp-chat-open') === 'true') {
+      document.body.classList.add('show-chatbot');
+    }
   
     const chatbotToggler = createHTMLElement('button', { class: 'chatbot-toggler' }, `
       <span>
@@ -35,6 +42,11 @@ class ChatBotWidget {
   
     const chatbot = createHTMLElement('div', { class: 'chatbot' }, `
       <header>
+        <div class="nw-contact-human-banner">
+          <a href="#" target="_blank" rel="noopener noreferrer">
+            Speak to a Human
+          </a>
+        </div>
         <h2>Assistance</h2>
         <span class="close-btn">
           <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-10 h-10">
@@ -46,26 +58,134 @@ class ChatBotWidget {
             <path fill-rule="evenodd" d="M16.5 4.478v.227a48.816 48.816 0 013.878.512.75.75 0 11-.256 1.478l-.209-.035-1.005 13.07a3 3 0 01-2.991 2.77H8.084a3 3 0 01-2.991-2.77L4.087 6.66l-.209.035a.75.75 0 01-.256-1.478A48.567 48.567 0 017.5 4.705v-.227c0-1.564 1.213-2.9 2.816-2.951a52.662 52.662 0 013.369 0c1.603.051 2.815 1.387 2.815 2.951zm-6.136-1.452a51.196 51.196 0 013.273 0C14.39 3.05 15 3.684 15 4.478v.113a49.488 49.488 0 00-6 0v-.113c0-.794.609-1.428 1.364-1.452zm-.355 5.945a.75.75 0 10-1.5.058l.347 9a.75.75 0 101.499-.058l-.346-9zm5.48.058a.75.75 0 10-1.498-.058l-.347 9a.75.75 0 001.5.058l.345-9z" clip-rule="evenodd" />
           </svg>      
         </span>
+        <span class="menu-btn">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          </svg>
+        </span>
       </header>
       <ul class="chatbox">
-        
+      
       </ul>
       <div class="chat-input">
         <textarea placeholder="Enter a message..." spellcheck="false" required></textarea>
         <span id="send-btn" class="icon-container">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#0057ff" class="w-10 h-10">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="var(--nw-primary-color)" class="w-10 h-10">
             <path d="M3.478 2.405a.75.75 0 00-.926.94l2.432 7.905H13.5a.75.75 0 010 1.5H4.984l-2.432 7.905a.75.75 0 00.926.94 60.519 60.519 0 0018.445-8.986.75.75 0 000-1.218A60.517 60.517 0 003.478 2.405z" />
           </svg>
         </span>
       </div>
+      <div class="chat-home">
+        <h3>
+          Hey I'm <span style="color:var(--nw-secondary-color)">KIPP</span>,
+          <br>
+          How can I help?
+        </h3>
+        <div class="chat-faq">
+          <div class="send-message-btn">
+            Send a message
+          </div>
+          <p style="text-align:center;font-size:0.8em;margin-top:0.8em;">Instant Answers</p>
+          <div class='spinner' />
+        </div>
+      </div>
     `);
-  
+    
     document.body.appendChild(chatbotToggler);
     document.body.appendChild(chatbot);
+
+    // we set this event listener to true so that the user can open the bot before KIPP data is fetched
+    const chatbotOpenState = "kp-chat-open";
+
+    const toggleChatbot = () => {
+      document.body.classList.toggle("show-chatbot");
+      const chatbotOpen = document.body.classList.contains("show-chatbot");
+      localStorage.setItem(chatbotOpenState, chatbotOpen);
+    }
+
+    chatbotToggler.addEventListener("click", toggleChatbot);
+    
+    // fetching KIPP data
+    const fetchKIPP = async () => {
+      let KIPPDataRes;
+      try {
+        KIPPDataRes = await fetch(
+          'https://us-central1-sales-chatbot-f1521.cloudfunctions.net/fetchKIPP',
+          {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer ${''}`, // idToken
+            },
+            body: JSON.stringify({ shopProvider, chatBotWebsiteHostName, clientId })
+          }
+        );
+        
+        if (!KIPPDataRes.ok) {
+          throw new Error('Something went wrong. Please try again later.');
+        }
+        
+        const KIPPData = await KIPPDataRes.json();
+
+        // setting contactBtn link
+        const contactUrl = KIPPData?.contactBtnUrl
+        const contactBtn = document.querySelector('.nw-contact-human-banner a');
+        
+        if (contactUrl) {
+          contactBtn && contactBtn.setAttribute('href', contactUrl);
+        }
+
+        // setting chatbot colours
+        const root = document.documentElement;
+        KIPPData?.colour1 && root.style.setProperty('--nw-primary-color', KIPPData?.colour1);
+        KIPPData?.colour2 && root.style.setProperty('--nw-secondary-color', KIPPData?.colour2);
+
+        // setting faq
+        faq = KIPPData.faq;
+        
+        const faqContainer = document.querySelector('.chat-faq');
+        // delete only .spinner div
+        const spinner = faqContainer.querySelector('.spinner');
+        if (spinner) {
+          faqContainer.removeChild(spinner);
+        }
+        
+        faq.forEach((faqItem, index) => {
+          faqContainer.innerHTML += `
+            <div class="question" id="${index}">
+              ${faqItem.question}
+            </div>
+          `;
+        });
+      } catch (error) {
+        console.error(error);
+        faq = await KIPPDataRes?.text();
+        const faqContainer = document.querySelector('.chat-faq');
+        // delete only .spinner div
+        const spinner = faqContainer.querySelector('.spinner');
+        if (spinner) {
+          faqContainer.removeChild(spinner);
+        }
+    
+        if (faq === 'FAQ not found') {
+          faqContainer.querySelector('p').innerHTML = 'No instant answers.';
+        } else {
+          faqContainer.innerHTML += `
+            <div class="question">
+              Something went wrong. Please try again later.
+            </div>
+          `;
+        }
+      }
+    };
+    
+
+    // fetching KIPP data
+    await fetchKIPP();
 
     // appending script tag to body to load chatbot.js
     const script = document.createElement('script');
     script.src = 'https://raw.githack.com/Great62/chatbot-vanilla-vite/main/chatbot.js';
+    // script.src = './chatbot.js';
     script.type = 'module';
     script.defer = true; // Optionally, set defer or async attribute
     document.body.appendChild(script);
@@ -94,7 +214,7 @@ const initializeChatbot = ({
   clientIdWeb
 }) => {
   clientId = clientIdWeb;
-  shopProvider = shopProviderWeb;
+  shopProvider = shopProviderWeb || 'shopify';
   if (!clientId) {
     console.error('Please set the clienId in the initializeChatbot function');
     return;
@@ -106,6 +226,6 @@ const initializeChatbot = ({
   new ChatBotWidget();
 }
 
-window.salesChatbot = {
+window.nwKIPPChatbot = {
   initializeChatbot: initializeChatbot,
 };
