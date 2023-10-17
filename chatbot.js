@@ -75,7 +75,13 @@ const init = () => {
   }
 
   // get couponGivenDate from local storage
-  const couponGivenDateFromLocalStorage = JSON.parse(localStorage.getItem('kp-couponGivenDate'));
+  const couponGivenDateFromLocalStorageRaw = localStorage.getItem('kp-couponGivenDate');
+  let couponGivenDateFromLocalStorage = null;
+  try {
+    couponGivenDateFromLocalStorage = JSON.parse(couponGivenDateFromLocalStorageRaw);
+  } catch (error) {
+    console.log('error parsing couponGivenDate from local storage: ', error);
+  }
   if (couponGivenDateFromLocalStorage) {
     couponGivenDate = couponGivenDateFromLocalStorage;
   }
