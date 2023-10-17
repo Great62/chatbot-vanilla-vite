@@ -5,6 +5,6 @@ export const shopifyPageDetails = () => {
   return {
     pageType: pageType,
     productName: productName,
-    productId: productId,
+    productId: String(productId),
   }
 }
