@@ -112,9 +112,11 @@ body.show-chatbot .chatbot {
   transform: translateY(-50%);
 }
 header h2 {
-  font-size: 1.4em;
-  font-weight: 600;
+  font-size: 1.4em !important;
+  font-weight: 600 !important;
   color: #fff;
+  line-height: 24px !important;
+  padding: 0px !important;
 }
 header .nw-contact-human-banner {
   position: absolute;
@@ -142,6 +144,7 @@ header .nw-contact-human-banner:hover {
   height: 100%;
   color: var(--nw-primary-color);
   text-decoration: none;
+  line-height: 14px !important;
 }
 header .nw-contact-human-banner:hover a {
   color: #fff;
@@ -258,9 +261,10 @@ header .nw-contact-human-banner:hover a {
   overflow-y: auto;
 }
 .chatbot .chat-home h3 {
-  font-size: 2em;
-  font-weight: 800;
+  font-size: 2em !important;
+  font-weight: 800 !important;
   color: #000;
+  padding: 0px !important;
   width: 100%;
   margin-top: 1em;
   margin-bottom: 1em;
