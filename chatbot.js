@@ -141,7 +141,11 @@ const generateResponse = async (chatElement) => {
     // update the couponGivenDate variable and set local storage
     if (data?.response?.couponGivenDate) {
       couponGivenDate = data?.response?.couponGivenDate;
-      localStorage.setItem('kp-couponGivenDate', JSON.stringify(couponGivenDate));
+      try {
+        localStorage.setItem('kp-couponGivenDate', couponGivenDate);
+      } catch (error) {
+        console.log('error setting couponGivenDate in local storage: ', error);
+      }
     }
 
     // update local storage

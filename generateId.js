@@ -8,7 +8,7 @@ export const generateUserId = (length) => {
     result += characters.charAt(randomIndex);
   }
 
-  console.log('result', result)
+  // console.log('result', result)
 
   return 'kp-' + result;
 }
