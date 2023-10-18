@@ -184,7 +184,7 @@ class ChatBotWidget {
 
     // appending script tag to body to load chatbot.js
     const script = document.createElement('script');
-    script.src = 'https://raw.githack.com/Great62/chatbot-vanilla-vite/main/chatbot.js';
+    script.src = 'https://rawcdn.githack.com/Great62/chatbot-vanilla-vite/1bab43aa59f386778fe566c82f85451d7a4ce9e9/chatbot.js';
     // script.src = './chatbot.js';
     script.type = 'module';
     script.defer = true; // Optionally, set defer or async attribute
