@@ -1,6 +1,11 @@
-import { clientId, shopProvider, chatBotWebsiteHostName, faq } from './inject.js';
+import { chatBotWebsiteHostName } from './inject.js';
 import * as getPageDetailsMethods from './getPageDetails.js';
 import { generateUserId } from './generateId.js';
+
+// getting global variables
+const clientId = window?.nwKIPPChatbotData?.clientId || '';
+const shopProvider = window?.nwKIPPChatbotData?.shopProvider || 'shopify';
+const faq = window?.nwKIPPChatbotData?.faq || [];
 
 console.log('clientId: ', clientId);
 console.log('shopProvider: ', shopProvider);
