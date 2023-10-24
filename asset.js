@@ -284,6 +284,15 @@ header .nw-contact-human-banner:hover a {
   cursor: pointer;
   transition: all 0.2s ease;
 }
+.chat-faq .errorMsg {
+  display: flex;
+  justify-items: center;
+  gap: 10px;
+  padding: 10px 15px;
+  border-radius: 10px;
+  background: #f8d7da;
+  transition: all 0.2s ease;
+}
 .chat-faq .question:hover {
   background: #ddd;
 }

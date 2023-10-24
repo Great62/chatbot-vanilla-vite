@@ -141,6 +141,9 @@ class ChatBotWidget {
 
         // setting faq
         faq = KIPPData.faq;
+
+        // setting global variable faq
+        window.nwKIPPChatbotData.faq = faq;
         
         const faqContainer = document.querySelector('.chat-faq');
         // delete only .spinner div
@@ -170,7 +173,7 @@ class ChatBotWidget {
           faqContainer.querySelector('p').innerHTML = 'No instant answers.';
         } else {
           faqContainer.innerHTML += `
-            <div class="question">
+            <div class="errorMsg">
               Something went wrong. Please try again later.
             </div>
           `;
@@ -184,7 +187,8 @@ class ChatBotWidget {
 
     // appending script tag to body to load chatbot.js
     const script = document.createElement('script');
-    script.src = 'https://rawcdn.githack.com/Great62/chatbot-vanilla-vite/1bab43aa59f386778fe566c82f85451d7a4ce9e9/chatbot.js';
+    script.src = 'https://rawcdn.githack.com/Great62/chatbot-vanilla-vite/589e5e808046cff4c1b8f0c0a388aca027dce4d0/chatbot.js';
+    // script.src = 'https://raw.githack.com/Great62/chatbot-vanilla-vite/main/chatbot.js';
     // script.src = './chatbot.js';
     script.type = 'module';
     script.defer = true; // Optionally, set defer or async attribute
@@ -215,6 +219,7 @@ const initializeChatbot = ({
 }) => {
   clientId = clientIdWeb;
   shopProvider = shopProviderWeb || 'shopify';
+
   if (!clientId) {
     console.error('Please set the clienId in the initializeChatbot function');
     return;
@@ -223,8 +228,18 @@ const initializeChatbot = ({
     console.error('Please set the shopProvider in the initializeChatbot function');
     return;
   }
+
+  window.nwKIPPChatbotData.clientId = clientId;
+  window.nwKIPPChatbotData.shopProvider = shopProvider;
+  
   new ChatBotWidget();
 }
+
+window.nwKIPPChatbotData = {
+  clientId,
+  shopProvider,
+  faq,
+};
 
 window.nwKIPPChatbot = {
   initializeChatbot: initializeChatbot,
